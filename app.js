@@ -61,8 +61,14 @@ function game(numRounds) {
     }
   }
 
-  // TODO: actually declare who wins
   console.log(`player: ${playerWins}, computer: ${computerWins}`);
+  if (playerWins > computerWins) {
+    console.log('Congratulations, you win!');
+  } else if (computerWins > playerWins) {
+    console.log('Oh no, you lost :(');
+  } else {
+    console.log('OMG, a tie!');
+  }
 }
 
 game(5);
