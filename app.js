@@ -1,8 +1,10 @@
 // defines RPS reltions, key beats value
 const rpsMap = {
-  'rock': 'scissors',
-  'scissors': 'paper',
-  'paper': 'rock',
+  'rock': ['scissors', 'lizard'],
+  'paper': ['rock', 'spock'],
+  'scissors': ['paper', 'lizard'],
+  'lizard': ['paper', 'spock'],
+  'spock': ['scissors', 'rock']
 }
 const rpsValues = Object.keys(rpsMap);
 
@@ -15,7 +17,7 @@ function playRound(playerSelection, computerSelection) {
   if (playerSelection === computerSelection) {
     return 'tie';
   }
-  if (rpsMap[playerSelection] === computerSelection) {
+  if (rpsMap[playerSelection].includes(computerSelection)) {
     return 'player';
   } else {
     return 'computer';
