@@ -1,6 +1,6 @@
-// TODO: list rock, paper, scissors
+const rpsValues = ['rock', 'paper', 'scissors']
 function getComputerChoice() {
-  // TODO: randomly select between rock, paper scissors
+  return rpsValues[Math.floor(Math.random()*rpsValues.length)]
 }
 
 function playRound(playerSelection, computerSelection) {
@@ -16,4 +16,3 @@ function game(numRounds) {
 
   // TODO: declare final winner
 }
-
