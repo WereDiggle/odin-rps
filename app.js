@@ -3,32 +3,22 @@ function getComputerChoice() {
   return rpsValues[Math.floor(Math.random()*rpsValues.length)]
 }
 
+// defines RPS reltions, key beats value
+const rpsMap = {
+  'rock': 'scissors',
+  'scissors': 'paper',
+  'paper': 'rock',
+}
+
 function playRound(playerSelection, computerSelection) {
   // It's a tie if both selections are the same
   if (playerSelection === computerSelection) {
     return 'tie';
   }
-  // TODO: find a better way to do this later
-  if (playerSelection === 'rock') {
-    if (computerSelection === 'scissors') {
-      return 'player'
-    } else {
-      return 'computer'
-    }
-  }
-  if (playerSelection === 'paper') {
-    if (computerSelection === 'rock') {
-      return 'player'
-    } else {
-      return 'computer'
-    }
-  }
-  if (playerSelection === 'scissors') {
-    if (computerSelection === 'paper') {
-      return 'player'
-    } else {
-      return 'computer'
-    }
+  if (rpsMap[playerSelection] === computerSelection) {
+    return 'player';
+  } else {
+    return 'computer';
   }
 }
 
