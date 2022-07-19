@@ -4,8 +4,37 @@ function getComputerChoice() {
 }
 
 function playRound(playerSelection, computerSelection) {
-  // TODO: define win-lose relationship between rock-paper-scissors
-  // TODO: Return either "player" or "computer" based on winner
+  // Check that values are valid 
+  if (!(rpsValues.includes(playerSelection) && rpsValues.includes(computerSelection))) {
+    return null
+  }
+  
+  // It's a tie if both selections are the same
+  if (playerSelection === computerSelection) {
+    return 'tie';
+  }
+  // TODO: find a better way to do this later
+  if (playerSelection === 'rock') {
+    if (computerSelection === 'scissors') {
+      return 'player'
+    } else {
+      return 'computer'
+    }
+  }
+  if (playerSelection === 'paper') {
+    if (computerSelection === 'rock') {
+      return 'player'
+    } else {
+      return 'computer'
+    }
+  }
+  if (playerSelection === 'scissors') {
+    if (computerSelection === 'paper') {
+      return 'player'
+    } else {
+      return 'computer'
+    }
+  }
 }
 
 function game(numRounds) {
