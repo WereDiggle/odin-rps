@@ -37,11 +37,16 @@ function game(numRounds) {
   let computerWins = 0;
   for (let i=1; i<=numRounds; i++) {
     console.log(`Round ${i}`);
+
     let playerChoice = prompt('Select your weapon', 'rock').toLowerCase();
     while (!(rpsValues.includes(playerChoice))) {
       playerChoice = prompt('Invalid choice, try again', 'rock').toLowerCase();
     }
-    let result = playRound(playerChoice, getComputerChoice());
+
+    let computerChoice = getComputerChoice();
+    console.log(`${playerChoice} VS ${computerChoice}`);
+    let result = playRound(playerChoice, computerChoice);
+
     if (result === 'tie') {
       console.log('It is a tie');
     } else {
@@ -51,11 +56,12 @@ function game(numRounds) {
       } else if (result === 'computer') {
         computerWins++;
       } else {
-        console.log(`Result is ${result}, shouldn\'t be possible`);
+        console.log(`Result is ${result}, shouldn't be possible`);
       }
     }
   }
 
+  // TODO: actually declare who wins
   console.log(`player: ${playerWins}, computer: ${computerWins}`);
 }
 
