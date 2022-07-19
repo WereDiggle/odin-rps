@@ -4,11 +4,6 @@ function getComputerChoice() {
 }
 
 function playRound(playerSelection, computerSelection) {
-  // Check that values are valid 
-  if (!(rpsValues.includes(playerSelection) && rpsValues.includes(computerSelection))) {
-    return null
-  }
-  
   // It's a tie if both selections are the same
   if (playerSelection === computerSelection) {
     return 'tie';
@@ -38,10 +33,30 @@ function playRound(playerSelection, computerSelection) {
 }
 
 function game(numRounds) {
-  // TODO: stores wins for both computer and player
-  // TODO: loop for numRounds
-    // TODO: get player prompt for rps
-    // TODO: check for correctness, case-insensitive
+  let playerWins = 0;
+  let computerWins = 0;
+  for (let i=1; i<=numRounds; i++) {
+    console.log(`Round ${i}`);
+    let playerChoice = prompt('Select your weapon', 'rock').toLowerCase();
+    while (!(rpsValues.includes(playerChoice))) {
+      playerChoice = prompt('Invalid choice, try again', 'rock').toLowerCase();
+    }
+    let result = playRound(playerChoice, getComputerChoice());
+    if (result === 'tie') {
+      console.log('It is a tie');
+    } else {
+      console.log(`The winner is ${result}`);
+      if (result === 'player') {
+        playerWins++;
+      } else if (result === 'computer') {
+        computerWins++;
+      } else {
+        console.log(`Result is ${result}, shouldn\'t be possible`);
+      }
+    }
+  }
 
-  // TODO: declare final winner
+  console.log(`player: ${playerWins}, computer: ${computerWins}`);
 }
+
+game(5);
