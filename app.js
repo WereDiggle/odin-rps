@@ -1,13 +1,13 @@
-const rpsValues = ['rock', 'paper', 'scissors']
-function getComputerChoice() {
-  return rpsValues[Math.floor(Math.random()*rpsValues.length)]
-}
-
 // defines RPS reltions, key beats value
 const rpsMap = {
   'rock': 'scissors',
   'scissors': 'paper',
   'paper': 'rock',
+}
+const rpsValues = Object.keys(rpsMap);
+
+function getComputerChoice() {
+  return rpsValues[Math.floor(Math.random()*rpsValues.length)];
 }
 
 function playRound(playerSelection, computerSelection) {
