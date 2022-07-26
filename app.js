@@ -30,7 +30,7 @@ const computerText = document.querySelector("#results > #computer-text");
 const playerWins = document.querySelector("#results > #player-wins");
 const computerWins = document.querySelector("#results > #computer-wins");
 const winnerText = document.querySelector("#results > #winner-text");
-const selectionButtons = document.querySelectorAll("#btn-container > button");
+const selectionButtons = document.querySelectorAll("#left-panel > button");
 
 let roundNum = 1;
 let winCount = {

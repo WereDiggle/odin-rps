@@ -6,20 +6,32 @@
 </head>
 
 <body>
-  <div id="btn-container">
-    <button data-key="rock">ROCK</button>
-    <button data-key="paper">PAPER</button>
-    <button data-key="scissors">SCISSORS</button>
-    <button data-key="lizard">LIZARD</button>
-    <button data-key="spock">SPOCK</button>
-  </div>
-  <div id="results">
-    <p id="round-text"></p>
-    <p id="player-text"></p>
-    <p id="computer-text"></p>
-    <p id="player-wins"></p>
-    <p id="computer-wins"></p>
-    <p id="winner-text"></p>
+  <div id="gameboard">
+    <div id="left-panel">
+      <button data-key="rock">ROCK</button>
+      <button data-key="paper">PAPER</button>
+      <button data-key="scissors">SCISSORS</button>
+      <button data-key="lizard">LIZARD</button>
+      <button data-key="spock">SPOCK</button>
+    </div>
+    <div id="center-panel">
+      <div id="results">
+        <p id="round-text"></p>
+        <p id="player-text"></p>
+        <p id="computer-text"></p>
+        <p id="player-wins"></p>
+        <p id="computer-wins"></p>
+        <p id="winner-text"></p>
+      </div>
+      <div id="scores">
+        <div id="player-scores"></div>
+        <div id="computer-scores"></div>
+      </div>
+      <div id="winner-declaration"></div>
+      <div id="choice-compare"></div>
+      <div id="result-explanation"></div>
+    </div>
+    <div id="right-panel"></div>
   </div>
 </body>
 
