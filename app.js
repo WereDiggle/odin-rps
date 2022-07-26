@@ -15,7 +15,7 @@ function getComputerChoice() {
 function playRound(playerSelection, computerSelection) {
   // It's a tie if both selections are the same
   if (playerSelection === computerSelection) {
-    return "tie";
+    return null;
   }
   if (rpsMap[playerSelection].includes(computerSelection)) {
     return "player";
@@ -24,12 +24,37 @@ function playRound(playerSelection, computerSelection) {
   }
 }
 
+const roundText = document.querySelector("#results > #round-text");
+const playerText = document.querySelector("#results > #player-text");
+const computerText = document.querySelector("#results > #computer-text");
+const playerWins = document.querySelector("#results > #player-wins");
+const computerWins = document.querySelector("#results > #computer-wins");
+const winnerText = document.querySelector("#results > #winner-text");
 const selectionButtons = document.querySelectorAll("#btn-container > button");
+
+let roundNum = 1;
+let winCount = {
+  player: 0,
+  computer: 0,
+};
+
 selectionButtons.forEach((btn) =>
   btn.addEventListener("click", function (e) {
     const playerSelection = this.getAttribute("data-key");
-    const results = playRound(playerSelection, getComputerChoice());
-    console.log(results);
+    const computerSelection = getComputerChoice();
+    const winner = playRound(playerSelection, computerSelection);
+    roundText.textContent = `Round ${roundNum}`;
+    playerText.textContent = `Player picks ${playerSelection}`;
+    computerText.textContent = `Computer picks ${computerSelection}`;
+    if (winner) {
+      winnerText.textContent = `Winner is ${winner}`;
+      winCount[winner]++;
+    } else {
+      winnerText.textContent = "It's a tie!";
+    }
+    playerWins.textContent = `Player wins: ${winCount.player}`;
+    computerWins.textContent = `computer wins: ${winCount.computer}`;
+    roundNum++;
   })
 );
 
