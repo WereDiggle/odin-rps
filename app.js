@@ -40,6 +40,7 @@ let winCount = {
 
 selectionButtons.forEach((btn) =>
   btn.addEventListener("click", function (e) {
+    if (winCount.player >= 5 || winCount.computer >= 5) return;
     const playerSelection = this.getAttribute("data-key");
     const computerSelection = getComputerChoice();
     const winner = playRound(playerSelection, computerSelection);
@@ -47,13 +48,14 @@ selectionButtons.forEach((btn) =>
     playerText.textContent = `Player picks ${playerSelection}`;
     computerText.textContent = `Computer picks ${computerSelection}`;
     if (winner) {
-      winnerText.textContent = `Winner is ${winner}`;
       winCount[winner]++;
-    } else {
-      winnerText.textContent = "It's a tie!";
     }
-    playerWins.textContent = `Player wins: ${winCount.player}`;
-    computerWins.textContent = `computer wins: ${winCount.computer}`;
+    playerWins.textContent = `Player score: ${winCount.player}`;
+    computerWins.textContent = `computer score: ${winCount.computer}`;
+    if (winCount[winner] >= 5) {
+      winnerText.textContent = `Winner is ${winner}`;
+      // Remove event listeners
+    }
     roundNum++;
   })
 );
