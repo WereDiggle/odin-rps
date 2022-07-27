@@ -8,11 +8,26 @@ const rpsMap = {
 };
 const rpsValues = Object.keys(rpsMap);
 
+const playerScoreNode = document.querySelector("#player-score");
+const computerScoreNode = document.querySelector("#computer-score");
+const winnerDeclareNode = document.querySelector("#winner-declaration");
+const explanationNode = document.querySelector("#result-explanation");
+const choiceCompareNode = document.querySelector("#choice-compare");
+const selectionButtons = document.querySelectorAll("#left-panel > button");
+const gameOverModal = document.querySelector("#game-over");
+
+// Game state
+let roundNum = 1;
+let winCount = {
+  player: 0,
+  computer: 0,
+};
+
 function getComputerChoice() {
   return rpsValues[Math.floor(Math.random() * rpsValues.length)];
 }
 
-function playRound(playerSelection, computerSelection) {
+function decideWinner(playerSelection, computerSelection) {
   // It's a tie if both selections are the same
   if (playerSelection === computerSelection) {
     return null;
@@ -24,41 +39,38 @@ function playRound(playerSelection, computerSelection) {
   }
 }
 
-const roundText = document.querySelector("#results > #round-text");
-const playerText = document.querySelector("#results > #player-text");
-const computerText = document.querySelector("#results > #computer-text");
-const playerWins = document.querySelector("#results > #player-wins");
-const computerWins = document.querySelector("#results > #computer-wins");
-const winnerText = document.querySelector("#results > #winner-text");
-const selectionButtons = document.querySelectorAll("#left-panel > button");
+function playRound(e) {
+  if (winCount.player >= 5 || winCount.computer >= 5) return;
+  const playerSelection = this.getAttribute("data-key");
+  const computerSelection = getComputerChoice();
+  const winner = decideWinner(playerSelection, computerSelection);
 
-let roundNum = 1;
-let winCount = {
-  player: 0,
-  computer: 0,
-};
+  // Update Score
+  winCount[winner]++;
+  playerScoreNode.textContent = `${winCount.player}`;
+  computerScoreNode.textContent = `${winCount.computer}`;
 
-selectionButtons.forEach((btn) =>
-  btn.addEventListener("click", function (e) {
-    if (winCount.player >= 5 || winCount.computer >= 5) return;
-    const playerSelection = this.getAttribute("data-key");
-    const computerSelection = getComputerChoice();
-    const winner = playRound(playerSelection, computerSelection);
-    roundText.textContent = `Round ${roundNum}`;
-    playerText.textContent = `Player picks ${playerSelection}`;
-    computerText.textContent = `Computer picks ${computerSelection}`;
-    if (winner) {
-      winCount[winner]++;
-    }
-    playerWins.textContent = `Player score: ${winCount.player}`;
-    computerWins.textContent = `computer score: ${winCount.computer}`;
-    if (winCount[winner] >= 5) {
-      winnerText.textContent = `Winner is ${winner}`;
-      // Remove event listeners
-    }
-    roundNum++;
-  })
-);
+  // Update selection
+  choiceCompareNode.textContent = `${playerSelection} vs ${computerSelection}`;
+
+  // Update Explanation
+  if (winner === "player") {
+    explanationNode.textContent = `${playerSelection} beats ${computerSelection}`;
+    winnerDeclareNode.textContent = "Player wins";
+  } else if (winner === "computer") {
+    explanationNode.textContent = `${playerSelection} loses to ${computerSelection}`;
+    winnerDeclareNode.textContent = "Computer wins";
+  } else {
+    explanationNode.textContent = "";
+    winnerDeclareNode.textContent = "It's a tie";
+  }
+
+  if (winCount[winner] >= 5) {
+    declareWinner(winner);
+  }
+}
+
+selectionButtons.forEach((btn) => btn.addEventListener("click", playRound));
 
 function game(numRounds) {
   let playerWins = 0;
