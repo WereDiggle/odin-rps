@@ -29,6 +29,10 @@
     gap: 50px;
 }
 
+#scores > div {
+    width: 70px;
+}
+
 #right-panel {
     justify-content: center;
     padding: 50px;
@@ -41,4 +45,8 @@
 
 .pad50 {
     padding: 50px;
+}
+
+.gap50 {
+    gap: 50px;
 }
