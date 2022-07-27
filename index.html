@@ -2,36 +2,32 @@
 <html lang="en">
 
 <head>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <link rel="stylesheet" href="styles.css">
   <meta charset="UTF-8">
 </head>
 
-<body>
-  <div id="gameboard">
-    <div id="left-panel">
+<body class="flex-column align-center">
+  <div id="gameboard" class="flex-row">
+    <div id="left-panel" class="flex-column pad50">
       <button data-key="rock">ROCK</button>
       <button data-key="paper">PAPER</button>
       <button data-key="scissors">SCISSORS</button>
       <button data-key="lizard">LIZARD</button>
       <button data-key="spock">SPOCK</button>
     </div>
-    <div id="center-panel">
-      <div id="results">
-        <p id="round-text"></p>
-        <p id="player-text"></p>
-        <p id="computer-text"></p>
-        <p id="player-wins"></p>
-        <p id="computer-wins"></p>
-        <p id="winner-text"></p>
+    <div id="center-panel" class="flex-column align-center">
+      <div id="scores" class="flex-row">
+        <div id="player-scores">Player 0</div>
+        <div id="computer-scores">Computer 0</div>
       </div>
-      <div id="scores">
-        <div id="player-scores"></div>
-        <div id="computer-scores"></div>
-      </div>
-      <div id="winner-declaration"></div>
-      <div id="choice-compare"></div>
-      <div id="result-explanation"></div>
+      <div id="winner-declaration">Player wins</div>
+      <div id="choice-compare">Rock vs Paper</div>
+      <div id="result-explanation">Rock beats paper</div>
     </div>
-    <div id="right-panel"></div>
+    <div id="right-panel" class="flex-column align-center">
+      <i class="material-icons">smart_toy</i>
+    </div>
   </div>
 </body>
 
