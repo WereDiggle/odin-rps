@@ -33,7 +33,7 @@
     box-sizing: border-box;
     width: 400px;
     padding: 50px;
-    justify-content: flex-start;
+    justify-content: flex-center;
     gap: 50px;
 }
 
@@ -70,6 +70,26 @@
     visibility: visible;
     transition: opacity 0.5s;
 }
+
+/*
+#player-choice {
+    opacity: 0;
+    transform: translateX(-100px);
+}
+
+#computer-choice {
+    opacity: 0;
+    transform: translateX(100px);
+}
+
+#player-choice.active,
+#computer-choice.active {
+    opacity: 1;
+    transform: translateX(0px);
+    transition: all 0.7s;
+}
+*/
+
 
 .pad50 {
     padding: 50px;

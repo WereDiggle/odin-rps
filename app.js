@@ -8,11 +8,21 @@ const rpsMap = {
 };
 const rpsValues = Object.keys(rpsMap);
 
+const icons = {
+  rock: "./images/rock.svg",
+  paper: "./images/paper.svg",
+  scissors: "./images/scissors.svg",
+  lizard: "./images/lizard.svg",
+  spock: "./images/spock.svg",
+};
+
 const playerScoreNode = document.querySelector("#player-score");
 const computerScoreNode = document.querySelector("#computer-score");
 const winnerDeclareNode = document.querySelector("#winner-declaration");
 const explanationNode = document.querySelector("#result-explanation");
 const choiceCompareNode = document.querySelector("#choice-compare");
+const playerChoiceNode = document.querySelector("#player-choice");
+const computerChoiceNode = document.querySelector("#computer-choice");
 const selectionButtons = document.querySelectorAll("#left-panel > button");
 
 // Game state
@@ -56,14 +66,16 @@ function updateDisplay() {
   computerScoreNode.textContent = `${winCount.computer}`;
 
   if (!playerSelection || !computerSelection) {
-    choiceCompareNode.textContent = "";
+    playerChoiceNode.setAttribute("src", "");
+    computerChoiceNode.setAttribute("src", "");
     explanationNode.textContent = "";
     winnerDeclareNode.textContent = "";
     return;
   }
 
   // Update selection
-  choiceCompareNode.textContent = `${playerSelection} vs ${computerSelection}`;
+  playerChoiceNode.setAttribute("src", icons[playerSelection]);
+  computerChoiceNode.setAttribute("src", icons[computerSelection]);
 
   // Update Explanation
   if (roundWinner === "player") {
