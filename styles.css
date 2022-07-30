@@ -43,6 +43,24 @@
     color: gray;
 }
 
+.modal {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    z-index: 101;
+    background-color: black;
+    visibility: hidden;
+    transition: opacity 0.5s, visibility 0s 0.5s;
+}
+
+.modal.active {
+    opacity: 1;
+    visibility: visible;
+    transition: opacity 0.5s;
+}
+
 .pad50 {
     padding: 50px;
 }

@@ -14,7 +14,6 @@ const winnerDeclareNode = document.querySelector("#winner-declaration");
 const explanationNode = document.querySelector("#result-explanation");
 const choiceCompareNode = document.querySelector("#choice-compare");
 const selectionButtons = document.querySelectorAll("#left-panel > button");
-const gameOverModal = document.querySelector("#game-over");
 
 // Game state
 let roundNum = 1;
@@ -37,6 +36,13 @@ function decideWinner(playerSelection, computerSelection) {
   } else {
     return "computer";
   }
+}
+
+function endGame(winner) {
+  const gameOverModal = document.querySelector("#game-over");
+  gameOverModal.classList.add("active");
+  // make game-over node overlay everything
+  // Add button to game over, to play again
 }
 
 function playRound(e) {
@@ -66,7 +72,7 @@ function playRound(e) {
   }
 
   if (winCount[winner] >= 5) {
-    declareWinner(winner);
+    endGame(winner);
   }
 }
 
