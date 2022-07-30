@@ -21,6 +21,9 @@ let winCount = {
   player: 0,
   computer: 0,
 };
+let playerSelection = null;
+let computerSelection = null;
+let roundWinner = null;
 
 function getComputerChoice() {
   return rpsValues[Math.floor(Math.random() * rpsValues.length)];
@@ -44,44 +47,70 @@ function endGame(winner) {
   gameOverModal.classList.add("active");
 
   // Add game over text
-  const winnerText = document.createElement("div");
-  winnerText.textContent = `${winner} has won`;
-  gameOverModal.prepend(winnerText);
-
-  // Add button to game over, to play again
+  const gameOverText = document.querySelector("#game-over-text");
+  gameOverText.textContent = `${winner} has won`;
 }
 
-function playRound(e) {
-  if (winCount.player >= 5 || winCount.computer >= 5) return;
-  const playerSelection = this.getAttribute("data-key");
-  const computerSelection = getComputerChoice();
-  const winner = decideWinner(playerSelection, computerSelection);
-
-  // Update Score
-  winCount[winner]++;
+function updateDisplay() {
   playerScoreNode.textContent = `${winCount.player}`;
   computerScoreNode.textContent = `${winCount.computer}`;
+
+  if (!playerSelection || !computerSelection) {
+    choiceCompareNode.textContent = "";
+    explanationNode.textContent = "";
+    winnerDeclareNode.textContent = "";
+    return;
+  }
 
   // Update selection
   choiceCompareNode.textContent = `${playerSelection} vs ${computerSelection}`;
 
   // Update Explanation
-  if (winner === "player") {
+  if (roundWinner === "player") {
     explanationNode.textContent = `${playerSelection} beats ${computerSelection}`;
     winnerDeclareNode.textContent = "Player wins";
-  } else if (winner === "computer") {
+  } else if (roundWinner === "computer") {
     explanationNode.textContent = `${playerSelection} loses to ${computerSelection}`;
     winnerDeclareNode.textContent = "Computer wins";
   } else {
     explanationNode.textContent = "";
     winnerDeclareNode.textContent = "It's a tie";
   }
+}
 
-  if (winCount[winner] >= 5) {
-    endGame(winner);
+function playRound(e) {
+  if (winCount.player >= 5 || winCount.computer >= 5) return;
+  playerSelection = this.getAttribute("data-key");
+  computerSelection = getComputerChoice();
+  roundWinner = decideWinner(playerSelection, computerSelection);
+
+  // Update Score
+  winCount[roundWinner]++;
+
+  updateDisplay();
+
+  if (winCount[roundWinner] >= 5) {
+    endGame(roundWinner);
   }
 }
 
+function resetGame() {
+  // Reset game state
+  roundNum = 1;
+  winCount = {
+    player: 0,
+    computer: 0,
+  };
+  playerSelection = computerSelection = roundWinner = null;
+
+  updateDisplay();
+
+  // Remove game over screen
+  const gameOverModal = document.querySelector("#game-over");
+  gameOverModal.classList.remove("active");
+}
+
+document.querySelector("#play-again-btn").addEventListener("click", resetGame);
 selectionButtons.forEach((btn) => btn.addEventListener("click", playRound));
 
 function game(numRounds) {
