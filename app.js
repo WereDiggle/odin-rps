@@ -74,8 +74,13 @@ function updateDisplay() {
   }
 
   // Update selection
+  playerChoiceNode.classList.remove("active");
   playerChoiceNode.setAttribute("src", icons[playerSelection]);
+  playerChoiceNode.classList.add("active");
+
+  computerChoiceNode.classList.remove("active");
   computerChoiceNode.setAttribute("src", icons[computerSelection]);
+  computerChoiceNode.classList.add("active");
 
   // Update Explanation
   if (roundWinner === "player") {
