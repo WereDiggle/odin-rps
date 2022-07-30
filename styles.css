@@ -71,13 +71,18 @@
     transition: opacity 0.5s;
 }
 
-#player-choice {
+#player-choice,
+#computer-choice {
+    width: 36px;
+    height: 36px;
     opacity: 0;
+}
+
+#player-choice {
     transform: translateX(-100px);
 }
 
 #computer-choice {
-    opacity: 0;
     transform: translateX(100px);
 }
 
