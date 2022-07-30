@@ -40,8 +40,14 @@ function decideWinner(playerSelection, computerSelection) {
 
 function endGame(winner) {
   const gameOverModal = document.querySelector("#game-over");
-  gameOverModal.classList.add("active");
   // make game-over node overlay everything
+  gameOverModal.classList.add("active");
+
+  // Add game over text
+  const winnerText = document.createElement("div");
+  winnerText.textContent = `${winner} has won`;
+  gameOverModal.prepend(winnerText);
+
   // Add button to game over, to play again
 }
 

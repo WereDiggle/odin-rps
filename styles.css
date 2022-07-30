@@ -51,6 +51,7 @@
     width: 100%;
     z-index: 101;
     background-color: black;
+    color: white;
     visibility: hidden;
     transition: opacity 0.5s, visibility 0s 0.5s;
 }
