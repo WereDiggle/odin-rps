@@ -79,6 +79,8 @@ function endGame(winner) {
 function updateDisplay() {
   $("#player-score").textContent = `${winCount.player}`;
   $("#computer-score").textContent = `${winCount.computer}`;
+  $("#game-over-player-score").textContent = `${winCount.player}`;
+  $("#game-over-computer-score").textContent = `${winCount.computer}`;
   $("#player-choice").classList.remove("active");
   $("#computer-choice").classList.remove("active");
   $("#versus").classList.remove("active");
