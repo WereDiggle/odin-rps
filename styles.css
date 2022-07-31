@@ -16,17 +16,29 @@
     flex-direction: row;
 }
 
+body {
+    background-color: #5d5c61;
+    color: #FAF9F6;
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
 #left-panel {
     padding: 50px;
     gap: 25px;
 }
 
 #left-panel > button {
+    background-color: #7395ae;
+    border-radius: 20px;
     aspect-ratio: 1 / 1;
 }
 
-#left-panel > button > .material-icons {
-    font-size: 100px;
+#play-again-btn {
+    background-color: #7395ae;
+    color: white;
+    font-weight: bold;
+    border-radius: 10px;
+    padding: 20px;
 }
 
 #center-panel {
@@ -48,7 +60,7 @@
 
 #right-panel > .material-icons {
     font-size: 100px;
-    color: gray;
+    color: #b1a296;
 }
 
 .modal {
