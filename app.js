@@ -16,6 +16,8 @@ const icons = {
   spock: "./images/spock.svg",
 };
 
+const $ = (query) => document.querySelector(query);
+
 const playerScoreNode = document.querySelector("#player-score");
 const computerScoreNode = document.querySelector("#computer-score");
 const winnerDeclareNode = document.querySelector("#winner-declaration");
@@ -64,9 +66,10 @@ function endGame(winner) {
 function updateDisplay() {
   playerScoreNode.textContent = `${winCount.player}`;
   computerScoreNode.textContent = `${winCount.computer}`;
-
   playerChoiceNode.classList.remove("active");
   computerChoiceNode.classList.remove("active");
+  console.log($("#versus"));
+  $("#versus").classList.remove("active");
   if (!playerSelection || !computerSelection) {
     playerChoiceNode.setAttribute("src", "");
     computerChoiceNode.setAttribute("src", "");
@@ -85,6 +88,10 @@ function updateDisplay() {
   setTimeout(() => {
     computerChoiceNode.classList.add("active");
   }, 0);
+
+  setTimeout(() => {
+    $("#versus").classList.add("active");
+  });
 
   // Update Explanation
   if (roundWinner === "player") {

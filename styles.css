@@ -86,10 +86,16 @@
     transform: translateX(100px);
 }
 
+#versus {
+    opacity: 0;
+    transform: translateY(-30px);
+}
+
 #player-choice.active,
-#computer-choice.active {
+#computer-choice.active,
+#versus.active {
     opacity: 1;
-    transform: translateX(0px);
+    transform: translateX(0px) translateY(0px);
     transition: all 0.7s;
 }
 
