@@ -28,14 +28,23 @@ body {
     gap: 25px;
 }
 
-#left-panel > button {
+button {
     background-color: #7395ae;
+    border: 3px solid white;
+    cursor: pointer;
+}
+
+#left-panel>button {
     border-radius: 20px;
     aspect-ratio: 1 / 1;
 }
 
+button:hover {
+    box-shadow: 0 0 2rem #ffc600;
+    transition: all 0.3s;
+}
+
 #play-again-btn {
-    background-color: #7395ae;
     color: white;
     font-weight: bold;
     border-radius: 10px;
