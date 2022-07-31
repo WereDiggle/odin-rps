@@ -18,15 +18,6 @@ const icons = {
 
 const $ = (query) => document.querySelector(query);
 
-const playerScoreNode = document.querySelector("#player-score");
-const computerScoreNode = document.querySelector("#computer-score");
-const winnerDeclareNode = document.querySelector("#winner-declaration");
-const explanationNode = document.querySelector("#result-explanation");
-const choiceCompareNode = document.querySelector("#choice-compare");
-const playerChoiceNode = document.querySelector("#player-choice");
-const computerChoiceNode = document.querySelector("#computer-choice");
-const selectionButtons = document.querySelectorAll("#left-panel > button");
-
 // Game state
 let roundNum = 1;
 let winCount = {
@@ -64,29 +55,28 @@ function endGame(winner) {
 }
 
 function updateDisplay() {
-  playerScoreNode.textContent = `${winCount.player}`;
-  computerScoreNode.textContent = `${winCount.computer}`;
-  playerChoiceNode.classList.remove("active");
-  computerChoiceNode.classList.remove("active");
-  console.log($("#versus"));
+  $("#player-score").textContent = `${winCount.player}`;
+  $("#computer-score").textContent = `${winCount.computer}`;
+  $("#player-choice").classList.remove("active");
+  $("#computer-choice").classList.remove("active");
   $("#versus").classList.remove("active");
   if (!playerSelection || !computerSelection) {
-    playerChoiceNode.setAttribute("src", "");
-    computerChoiceNode.setAttribute("src", "");
-    explanationNode.textContent = "";
-    winnerDeclareNode.textContent = "";
+    $("#player-choice").setAttribute("src", "");
+    $("#computer-choice").setAttribute("src", "");
+    $("#result-explanation").textContent = "";
+    $("#winner-declaration").textContent = "";
     return;
   }
 
   // Update selection
-  playerChoiceNode.setAttribute("src", icons[playerSelection]);
+  $("#player-choice").setAttribute("src", icons[playerSelection]);
   setTimeout(() => {
-    playerChoiceNode.classList.add("active");
+    $("#player-choice").classList.add("active");
   }, 0);
 
-  computerChoiceNode.setAttribute("src", icons[computerSelection]);
+  $("#computer-choice").setAttribute("src", icons[computerSelection]);
   setTimeout(() => {
-    computerChoiceNode.classList.add("active");
+    $("#computer-choice").classList.add("active");
   }, 0);
 
   setTimeout(() => {
@@ -95,14 +85,18 @@ function updateDisplay() {
 
   // Update Explanation
   if (roundWinner === "player") {
-    explanationNode.textContent = `${playerSelection} beats ${computerSelection}`;
-    winnerDeclareNode.textContent = "Player wins";
+    $(
+      "#result-explanation"
+    ).textContent = `${playerSelection} beats ${computerSelection}`;
+    $("#winner-declaration").textContent = "Player wins";
   } else if (roundWinner === "computer") {
-    explanationNode.textContent = `${playerSelection} loses to ${computerSelection}`;
-    winnerDeclareNode.textContent = "Computer wins";
+    $(
+      "#result-explanation"
+    ).textContent = `${playerSelection} loses to ${computerSelection}`;
+    $("#winner-declaration").textContent = "Computer wins";
   } else {
-    explanationNode.textContent = "";
-    winnerDeclareNode.textContent = "It's a tie";
+    $("#result-explanation").textContent = "";
+    $("#winner-declaration").textContent = "It's a tie";
   }
 }
 
@@ -139,6 +133,7 @@ function resetGame() {
 }
 
 document.querySelector("#play-again-btn").addEventListener("click", resetGame);
+const selectionButtons = document.querySelectorAll("#left-panel > button");
 selectionButtons.forEach((btn) => btn.addEventListener("click", playRound));
 
 function game(numRounds) {
