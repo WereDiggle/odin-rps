@@ -8,6 +8,28 @@ const rpsMap = {
 };
 const rpsValues = Object.keys(rpsMap);
 
+const explanations = [
+  "scissors cuts paper",
+  "paper covers rock",
+  "rock crushes lizard",
+  "lizard poisons spock",
+  "spock smashes scissors",
+  "scissors decapitates lizard",
+  "lizard eats paper",
+  "paper disproves spock",
+  "spock vaporizes rock",
+  "rock crushes scissors",
+];
+
+function getExplanation(playerChoice, computerChoice) {
+  // If they're the same, it's a tie.
+  if (playerChoice === computerChoice) return "It's a tie";
+  // Search for explanation that contains both
+  return explanations
+    .filter((exp) => exp.includes(playerChoice))
+    .find((exp) => exp.includes(computerChoice));
+}
+
 const icons = {
   rock: "./images/rock.svg",
   paper: "./images/paper.svg",
@@ -84,18 +106,13 @@ function updateDisplay() {
   });
 
   // Update Explanation
+  $("#result-explanation").textContent =
+    getExplanation(playerSelection, computerSelection) || "It's a tie";
   if (roundWinner === "player") {
-    $(
-      "#result-explanation"
-    ).textContent = `${playerSelection} beats ${computerSelection}`;
     $("#winner-declaration").textContent = "Player wins";
   } else if (roundWinner === "computer") {
-    $(
-      "#result-explanation"
-    ).textContent = `${playerSelection} loses to ${computerSelection}`;
     $("#winner-declaration").textContent = "Computer wins";
   } else {
-    $("#result-explanation").textContent = "";
     $("#winner-declaration").textContent = "It's a tie";
   }
 }
