@@ -112,7 +112,7 @@ function playRound(e) {
   updateDisplay();
 
   if (winCount[roundWinner] >= 5) {
-    endGame(roundWinner);
+    setTimeout(() => endGame(roundWinner), 1000);
   }
 }
 
