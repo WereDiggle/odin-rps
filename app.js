@@ -65,6 +65,8 @@ function updateDisplay() {
   playerScoreNode.textContent = `${winCount.player}`;
   computerScoreNode.textContent = `${winCount.computer}`;
 
+  playerChoiceNode.classList.remove("active");
+  computerChoiceNode.classList.remove("active");
   if (!playerSelection || !computerSelection) {
     playerChoiceNode.setAttribute("src", "");
     computerChoiceNode.setAttribute("src", "");
@@ -74,13 +76,11 @@ function updateDisplay() {
   }
 
   // Update selection
-  playerChoiceNode.classList.remove("active");
   playerChoiceNode.setAttribute("src", icons[playerSelection]);
   setTimeout(() => {
     playerChoiceNode.classList.add("active");
   }, 0);
 
-  computerChoiceNode.classList.remove("active");
   computerChoiceNode.setAttribute("src", icons[computerSelection]);
   setTimeout(() => {
     computerChoiceNode.classList.add("active");
