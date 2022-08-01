@@ -23,7 +23,7 @@ const explanations = [
 
 function getExplanation(playerChoice, computerChoice) {
   // If they're the same, it's a tie.
-  if (playerChoice === computerChoice) return "It's a tie";
+  if (playerChoice === computerChoice) return "";
   // Search for explanation that contains both
   return explanations
     .filter((exp) => exp.includes(playerChoice))
@@ -108,8 +108,10 @@ function updateDisplay() {
   });
 
   // Update Explanation
-  $("#result-explanation").textContent =
-    getExplanation(playerSelection, computerSelection) || "It's a tie";
+  $("#result-explanation").textContent = getExplanation(
+    playerSelection,
+    computerSelection
+  );
   if (roundWinner === "player") {
     $("#winner-declaration").textContent = "Player wins";
   } else if (roundWinner === "computer") {
